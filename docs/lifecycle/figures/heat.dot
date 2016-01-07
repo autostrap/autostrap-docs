@@ -1,0 +1,62 @@
+digraph{
+
+  // Global settings
+
+  node [shape=box]
+  compound = true // allow edges between clusters
+
+  // the 'cluster_' prefix is important: without it borders and subgraph labels are omitted
+  subgraph cluster_metadata_master {
+    label = "cloud-init metadata";
+    stack_name;
+    adots[label="..."];
+    subgraph cluster_topics {
+      label = "topics";
+      puppet_master[label="puppet-master"];
+      puppet_agent[label="puppet-agent"];
+      bdots[label="..."];
+      }
+    }
+
+  subgraph cluster_metadata_nginx {
+    label = "cloud-init metadata";
+    nginx_stack_name[label="stack_name"];
+    cdots[label="..."];
+    subgraph cluster_topics {
+      label = "topics";
+      nginx_puppet_agent[label="puppet-agent"];
+      ddots[label="..."];
+      }
+    }
+
+
+  subgraph cluster_heat_params {
+    label = "Heat Parameters";
+    deploy_key;
+    config_repo;
+    config_branch;
+    additional_config;
+    }
+
+  autostrap[label="AS::autostrap"];
+
+  // puts nginx-server and pupetmaster on the same level:
+  {rank = same; puppetmaster, nginx;}
+
+  puppetmaster[shape=ellipse];
+  nginx[label="nginx-server", shape=ellipse];
+
+
+  // Edges
+
+  deploy_key -> autostrap;
+  config_repo -> autostrap;
+  config_branch -> autostrap;
+  additional_config -> autostrap;
+
+  bdots -> puppetmaster [ltail=cluster_metadata_master];
+  nginx_stack_name -> nginx [ltail=cluster_metadata_nginx];
+
+  autostrap -> puppetmaster [label="user_data"];
+  autostrap -> nginx [label="user_data"];
+}

@@ -1,0 +1,19 @@
+site_name: Autostrap Documentation
+theme: readthedocs
+
+pages:
+  - 'Introduction': 'index.md'
+  - 'Components': 'components/index.md'
+  - 'Entry Points': 'entry/index.md'
+  - 'Life of a Stack': 'lifecycle/index.md'
+  - 'Configuration Sources': 'config/index.md'
+  - 'Deployment Workflow': 'workflow/index.md'
+  - 'How do I...': 'howto/index.md'
+  - 'Configuration Topic Reference': 'topics/index.md'
+  - 'Glossary': 'glossary/index.md'
+ 
+markdown_extensions:
+  - mkdcomments
+  - markdown_include.include:
+      base_path: 'docs'
+  - toc

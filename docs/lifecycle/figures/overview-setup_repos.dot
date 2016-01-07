@@ -1,0 +1,43 @@
+digraph{
+
+  // Global settings
+
+  node [shape=box]
+  rankdir=LR
+
+  // nodes/node groups
+
+  autostrap [label="user-data script (AS::autostrap)"];
+  initialize_instance;
+  {rank=same; autostrap, initialize_instance, setup_system, setup_repos}
+
+  setup_system[label="020-setup_system"];
+  setup_repos[color=red];
+
+  subgraph cluster_puppet {
+    setup_puppet_modules[label="040-setup_puppet_modules"];
+    setup_hiera[label="060-setup_hiera"];
+    run_puppet_hiera[label="080_run_puppet_hiera"];
+
+    setup_puppet_modules -> setup_hiera -> run_puppet_hiera;
+    label = "Puppet setup";
+    labeljust=l;
+    }
+
+
+
+  puppet[shape=ellipse, label="Regular Puppet runs"];
+
+  // edges
+
+  autostrap -> initialize_instance;
+
+  initialize_instance -> setup_repos;
+  setup_repos -> setup_system;
+  setup_system -> setup_puppet_modules;
+
+
+  run_puppet_hiera -> puppet[style=dashed];
+  puppet -> puppet;
+
+}

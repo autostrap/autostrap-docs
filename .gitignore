@@ -1,0 +1,6 @@
+*.html
+img/
+site/
+*.swp
+pandoc-png.md
+pandoc-svg.md

@@ -1,0 +1,70 @@
+digraph{
+
+  // Global settings
+
+  rankdir=LR
+  node [shape=box]
+
+  // nodes/node groups
+
+  compound = true // allow edges between clusters
+
+  heat [label="Heat Template", shape=ellipse]
+  
+  // the 'cluster_' prefix is important: without it borders and labels are omitted
+  subgraph cluster_metadata {
+    label = "cloud-init metadata";
+    topics;
+    nodetype;
+    }
+
+  subgraph cluster_heat_params {
+    label = "Heat Parameters";
+    additional_config;
+    deploy_key;
+    config_repo;
+    config_branch;
+    }
+
+  autostrap[label="AS::autostrap"];
+
+  subgraph cluster_config_repos {
+    label = "Configuration repositories";
+    project_config [label="project-config"];
+    subgraph cluster_additional_config {
+      label="additional_config"
+      additional_1[label="additional 1"];
+      additional_dot[label="..."];
+      additional_n[label="additional n"];
+      }
+    global_config [label="global-config"];
+  }
+
+  combined_config [label="Combined Hiera configuration"];
+
+  // puts combined_config and server on the same level
+  {rank = same; combined_config, server;}
+
+  server[label="Openstack instance", shape=circle]
+
+
+  // Edges
+
+  heat -> topics[lhead=cluster_metadata];
+
+  heat -> config_branch[lhead=cluster_heat_params];
+
+  config_branch -> autostrap[ltail=cluster_heat_params];
+
+  nodetype -> server[ltail=cluster_metadata];
+
+  autostrap -> additional_dot[label="additional_config",lhead=cluster_additional_config];
+
+  global_config -> combined_config[label="default configuration"];
+  project_config -> combined_config [label = "extend and override"];
+  additional_dot -> combined_config [label = "extend and override",ltail=cluster_additional_config];
+
+  combined_config -> server;
+
+  autostrap -> server [label="1st stage bootstrap script"];
+}

@@ -1,0 +1,21 @@
+digraph{
+
+  node [shape=box]
+
+  compound = true // allow edges between clusters
+
+  project_config [label = "Fork project-config"];
+  heat_template [label = "Create Heat template"];
+
+  subgraph cluster_config {
+    topics [label = "Add topics from global-config to template"];
+    edit_config [label = "Edit project-config fork"];
+    }
+
+  deploy [label = "Deploy Heat template"];
+
+  project_config -> heat_template; 
+  heat_template -> topics[lhead=cluster_config];
+
+  topics -> deploy[ltail=cluster_config];
+}
