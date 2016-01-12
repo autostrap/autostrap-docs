@@ -29,3 +29,44 @@ served its purpose: the modules therein were only required to run
 `puppet-repodeploy`. From this point onward, only puppet modules retrieved by
 `puppet-repodeploy` will be used. The system is now ready for its first
 masterless puppet run.
+
+### Disabling the `hiera.yaml` generator
+
+If you would like to have full control over your `hiera.yaml` you can skip this
+step by passing a path to your own hiera.yaml through the `hiera_yaml_location`
+metadata parameter.
+
+If you specify this path, you are responsible for ensuring the file thus
+referenced exists on your system (we recommend putting it into your
+project-config repository which is cloned to `/opt/config/project`.
+
+*Note: while there is no warranty to void, this will lose you most Autostrap
+features: all you will get is an environment that runs puppet driven by the
+hiera.yaml you provided at the end of the bootstrapping process.*
+
+If you chose to do this, there are two ways to pass the `hiera_yaml_location`
+parameter, depending on how you run Autostrap:
+
+#### Using the AS::autostrap Heat Resource
+
+If you are using [Heat](/entry/#heat-resource) you can specify this parameter
+as part of your instance's `metadata` hash:
+
+```
+server:
+  type: OS::Nova::Server
+  properties:
+    name: myserver
+    metadata:
+      hiera_yaml_location: '/opt/config/project/puppet/hiera.yaml'
+```
+
+#### Using cloudstrap.standalone
+
+If you are using [autostrap.standalone](/entry#autostrap.standalone) to start
+the bootstrapping process you can specify this parameter by adding a `-m`
+option:
+
+```
+autostrap.standalone -m hiera_yaml_location=/opt/config/project/puppet/hiera.yaml
+```
