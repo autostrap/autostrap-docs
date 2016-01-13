@@ -10,3 +10,11 @@ metadata parameter, or indirectly by
 The `global-config` repository is meant as default configuration, to be overriden and extended
 by the [project-config](/glossary/#project-config) repository described in the next
 section.
+
+### Entry Position in hiera.yaml
+
+Hierarchy entries pointing to the global-config repository will appear at the
+very bottom of the hierarchy in `hiera.yaml`. This means that configuration
+from either [project-config](/config/#project) or any of the repositories
+specified through the [additional_config parameter](/config/#additional) will
+override it.

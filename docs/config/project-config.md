@@ -15,3 +15,9 @@ through the [`config_repo`][heat::autostrap::config_repo]
 and [`config_branch`][heat::autostrap::config_branch]
 parameters to the
 [AS::autostrap Heat resource][heat::autostrap], respectively.
+
+### Entry Position in hiera.yaml
+
+Hierarchy entries pointing to the project-config repository will appear before
+entries from the [global-config](/config/#global) repository and after entries
+from [additional config repositories](/config/#additional).
