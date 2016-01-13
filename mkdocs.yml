@@ -9,6 +9,7 @@ pages:
   - 'Configuration Sources': 'config/index.md'
   - 'Deployment Workflow': 'workflow/index.md'
   - 'How do I...': 'howto/index.md'
+  - 'Files and Directories': 'files/index.md'
   - 'Configuration Topic Reference': 'topics/index.md'
   - 'Glossary': 'glossary/index.md'
  
