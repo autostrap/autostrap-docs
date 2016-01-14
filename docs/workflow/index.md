@@ -26,12 +26,16 @@ approach.
 
 {!workflow/master-agent/desc.md!}
 
+{!workflow/master-agent/checklist.md!}
+
 {!workflow/master-agent/workflow.md!}
 
 <a name='masterless'/></a>
 # Masterless Puppet Configuration
 
 {!workflow/masterless/desc.md!}
+
+{!workflow/master-agent/checklist.md!}
 
 {!workflow/masterless/workflow.md!}
 
