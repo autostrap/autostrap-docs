@@ -32,8 +32,8 @@ parameters and/or environment variables (the Heat properties recognized by
 `AS::autostrap` are retrieved from identically named environment variables by
 `autostrap.standalone`) as needed to create other setups.
 
-Note: `autostrap.standalone` will not output anything on the console. To
-monitor progress tail the following files:
+`autostrap.standalone` will print the bootstrap scripts' output on the console.
+Alternatively, you can tail the following files to monitor progress:
 
 * /var/log/autostrap/stage0.log
 
