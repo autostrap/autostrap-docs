@@ -23,7 +23,7 @@ unset SSH_AUTH_SOCK     # This ensures the deploy key is used
 cd /tmp/bootstrap-scripts/stage0
 deploy_key="$(cat /root/deploy)" ./autostrap.standalone  \
            -m topics="base puppet-masterless" \
-           -m nodetype=docbox
+           -m nodetype=docserver
 ```
 
 This example will give you a nginx web server managed through masterless
