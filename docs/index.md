@@ -19,7 +19,7 @@ Debian flavoured systems, but none have been tested so far.
 
 # Environment
 
-Cloudstrap can either run standalone on any Ubuntu 14.04 with an Internet
+Cloudstrap can either run standalone on any Ubuntu 14.04 system with an Internet
 connection or it can be launched through Openstack's [Heat][ext::heat]
 orchestration tool. Porting to Cloud environments other than Openstack should
 not pose too great a challenge, but so far this has not been put to the test.
