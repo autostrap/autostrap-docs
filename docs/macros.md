@@ -31,6 +31,7 @@
 <!--- files in source repositories -->
 [bootstrap-scripts::autostrap.standalone]: https://github.com/autostrap/bootstrap-scripts/blob/master/stage0/autostrap.standalone
 [project-config::readme]: https://github.com/autostrap/project-config/blob/master/README.md
+[project-config::readme-dev]: https://github.com/autostrap/project-config/blob/master/heat-templates/dev/README.md
 
 <!--- external links -->
 [ext::apl]: http://www.apache.org/licenses/LICENSE-2.0

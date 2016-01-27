@@ -11,6 +11,7 @@ pages:
   - 'How do I...': 'howto/index.md'
   - 'Files and Directories': 'files/index.md'
   - 'Configuration Topic Reference': 'topics/index.md'
+  - 'Development': 'dev/index.md'
   - 'Glossary': 'glossary/index.md'
  
 markdown_extensions:
